@@ -13,7 +13,6 @@ module.exports = {
     publicPath: '/dist/',
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
   ],
   resolve: {
@@ -35,7 +34,7 @@ module.exports = {
     },
     {
       test: /\.jsx?$/,
-      loaders: ['babel'],
+      loaders: ['react-hot', 'babel'],
       include: path.join(__dirname, 'src'),
       exclude: /node_modules/,
     },
