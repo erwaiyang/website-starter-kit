@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
+import * as counterActions from 'actions/counterActions';
 
 import Counter from 'components/Counter';
 
@@ -8,15 +11,24 @@ class App extends Component {
     return (
       <div>
         <h1>React App</h1>
-        <Counter />
+        <Counter
+          count={this.props.counterReducer.count}
+          increment={this.props.counterActions.increment}
+          decrement={this.props.counterActions.decrement}
+        />
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => ({ state });
+const mapStateToProps = (state) => ({
+  counterReducer: state.counterReducer,
+});
 
-const mapDispatchToProps = (dispatch) => ({ dispatch });
+const mapDispatchToProps = (dispatch) => ({
+  counterActions: bindActionCreators(counterActions, dispatch),
+  dispatch,
+});
 
 export default connect(
   mapStateToProps,
