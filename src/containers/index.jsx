@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -34,3 +34,13 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(App);
+
+App.propTypes = {
+  counterReducer: {
+    count: PropTypes.number.isRequired,
+  },
+  counterActions: {
+    increment: PropTypes.func.isRequired,
+    decrement: PropTypes.func.isRequired,
+  },
+};
