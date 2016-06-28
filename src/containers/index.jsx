@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import Counter from 'components/Counter';
+
 class App extends Component {
   render() {
     return (
-      <div>React App</div>
+      <div>
+        <h1>React App</h1>
+        <Counter />
+      </div>
     );
   }
 }
