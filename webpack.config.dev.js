@@ -1,10 +1,12 @@
 const path = require('path');
 const webpack = require('webpack');
 
+const pkg = require('./package.json');
+
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
   entry: {
-    vendor: ['react', 'react-dom', 'redux', 'react-redux'],
+    vendor: Object.keys(pkg.dependencies),
     app: './src/index.js',
   },
   output: {
@@ -14,6 +16,7 @@ module.exports = {
   },
   plugins: [
     new webpack.NoErrorsPlugin(),
+    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js', Infinity),
   ],
   resolve: {
     root: path.resolve(__dirname),
