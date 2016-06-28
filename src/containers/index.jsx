@@ -36,11 +36,11 @@ export default connect(
 )(App);
 
 App.propTypes = {
-  counterReducer: {
+  counterReducer: PropTypes.shape({
     count: PropTypes.number.isRequired,
-  },
-  counterActions: {
+  }),
+  counterActions: PropTypes.shape({
     increment: PropTypes.func.isRequired,
     decrement: PropTypes.func.isRequired,
-  },
+  }),
 };
