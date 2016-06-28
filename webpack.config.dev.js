@@ -15,7 +15,6 @@ module.exports = {
     publicPath: '/dist/',
   },
   plugins: [
-    new webpack.NoErrorsPlugin(),
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js', Infinity),
   ],
   resolve: {
