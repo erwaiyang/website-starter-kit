@@ -15,6 +15,7 @@ class App extends Component {
           count={this.props.counterReducer.count}
           increment={this.props.counterActions.increment}
           decrement={this.props.counterActions.decrement}
+          asyncIncrement={() => this.props.dispatch({ type: 'INCREMENT_ASYNC' })}
         />
       </div>
     );
@@ -43,4 +44,5 @@ App.propTypes = {
     increment: PropTypes.func.isRequired,
     decrement: PropTypes.func.isRequired,
   }),
+  dispatch: PropTypes.func.isRequired,
 };
