@@ -14,6 +14,13 @@ module.exports = {
     filename: '[name].js',
     publicPath: '/dist/',
   },
+  devServer: {
+    compress: true,
+    stats: {
+      colors: true,
+      chunks: false,
+    },
+  },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js', Infinity),
   ],
