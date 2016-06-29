@@ -29,7 +29,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name].js',
-    publicPath: '/dist/',
+    publicPath: './dist/',
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
@@ -61,6 +61,8 @@ module.exports = {
       constants: 'src/constants',
       middlewares: 'src/middlewares',
       reducers: 'src/reducers',
+      images: 'data/images',
+      json: 'data/json',
     },
   },
   module: {
@@ -73,6 +75,13 @@ module.exports = {
       loaders: ['react-hot', babelLoader],
       include: path.join(__dirname, 'src'),
       exclude: /node_modules/,
+    },
+    {
+      test: /.*\.(gif|png|jpe?g|svg)$/i,
+      loaders: [
+        'file?hash=sha512&digest=hex&name=[hash].[ext]',
+        'image-webpack?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}',
+      ],
     },
   ],
   },
