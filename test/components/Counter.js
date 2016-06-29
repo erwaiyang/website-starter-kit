@@ -8,6 +8,6 @@ import Counter from 'components/Counter';
 describe('<Counter />', () => {
   it('should render 2 buttons', () => {
     const wrapper = shallow(<Counter />);
-    expect(wrapper.find('button')).to.have.length(2);
+    expect(wrapper.find('button')).to.have.length(3);
   });
 });
