@@ -10,7 +10,7 @@ const store = createStore(
   reducers,
   compose(
     applyMiddleware(sagaMiddleware),
-    window.devToolsExtension ? window.devToolsExtension() : undefined
+    window.devToolsExtension ? window.devToolsExtension() : f => f
   )
 );
 
