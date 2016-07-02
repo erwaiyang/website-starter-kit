@@ -1,0 +1,11 @@
+:root{
+  --primary-color: red;
+  --danger-theme: {
+    color: white;
+    background-color: red;
+  };
+}
+
+.background{
+  @apply --danger-theme;
+}

@@ -6,14 +6,13 @@ import * as counterActions from 'actions/counterActions';
 
 import Counter from 'components/Counter';
 
-const image = require('images/499.jpg');
+import 'styles/index';
 
 class App extends Component {
   render() {
     return (
-      <div>
+      <div className="background">
         <h1>React App</h1>
-        <img src={image} alt="499" />
         <Counter
           count={this.props.counterReducer.count}
           increment={this.props.counterActions.increment}

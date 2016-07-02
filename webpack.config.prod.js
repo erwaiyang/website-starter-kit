@@ -1,5 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
+const autoprefixer = require('autoprefixer');
+const cssnext = require('postcss-cssnext');
 
 const pkg = require('./package.json');
 
@@ -63,12 +65,13 @@ module.exports = {
       reducers: 'src/reducers',
       images: 'data/images',
       json: 'data/json',
+      styles: 'src/styles',
     },
   },
   module: {
     loaders: [{
       test: /\.css$/,
-      loader: 'style!css!postcss',
+      loader: 'style!css!postcss?pack=cssnext',
     },
     {
       test: /\.jsx?$/,
@@ -83,6 +86,13 @@ module.exports = {
         'image-webpack?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}',
       ],
     },
-  ],
+    ],
+  },
+  postcss: function () {
+    return {
+      defaults: [autoprefixer],
+      cleaner: [autoprefixer({ browsers: ['ie >= 10'] })],
+      cssnext: cssnext,
+    };
   },
 };
