@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -8,21 +8,17 @@ import Counter from 'components/Counter';
 
 import 'styles/index';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="background">
-        <h1>React App</h1>
-        <Counter
-          count={this.props.counterReducer.count}
-          increment={this.props.counterActions.increment}
-          decrement={this.props.counterActions.decrement}
-          asyncIncrement={() => this.props.dispatch({ type: 'INCREMENT_ASYNC' })}
-        />
-      </div>
-    );
-  }
-}
+const App = (props) => (
+  <div className="background">
+    <h1>React App</h1>
+    <Counter
+      count={props.counterReducer.count}
+      increment={props.counterActions.increment}
+      decrement={props.counterActions.decrement}
+      asyncIncrement={() => props.dispatch({ type: 'INCREMENT_ASYNC' })}
+    />
+  </div>
+);
 
 const mapStateToProps = (state) => ({
   counterReducer: state.counterReducer,

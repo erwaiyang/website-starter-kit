@@ -7,8 +7,5 @@
         "config": "webpack.config.dev.js"
       }
     }
-  },
-  "rules": {
-    "react/prefer-stateless-function": "off"
   }
 }
