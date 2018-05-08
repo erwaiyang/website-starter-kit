@@ -1,11 +1,9 @@
-const path = require('path');
-const webpack = require('webpack');
-const autoprefixer = require('autoprefixer');
-const cssnext = require('postcss-cssnext');
+const path = require('path')
 
-const pkg = require('./package.json');
+const pkg = require('./package.json')
 
 module.exports = {
+  mode: 'development',
   devtool: 'cheap-module-eval-source-map',
   entry: {
     vendor: Object.keys(pkg.dependencies),
@@ -16,56 +14,52 @@ module.exports = {
     filename: '[name].js',
     publicPath: '/dist/',
   },
-  devServer: {
-    compress: true,
-    stats: {
-      colors: true,
-      chunks: false,
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
     },
   },
-  plugins: [
-    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js', Infinity),
-  ],
   resolve: {
-    root: path.resolve(__dirname),
-    extensions: ['', '.js', '.jsx', '.css'],
-    modulesDirectories: ['node_modules'],
+    extensions: ['.js', '.jsx', '.css'],
     alias: {
-      actions: 'src/actions',
-      components: 'src/components',
-      constants: 'src/constants',
-      middlewares: 'src/middlewares',
-      reducers: 'src/reducers',
-      images: 'data/images',
-      json: 'data/json',
-      styles: 'src/styles',
+      actions: path.join(__dirname, 'src/actions'),
+      components: path.join(__dirname, 'src/components'),
+      constants: path.join(__dirname, 'src/constants'),
+      middlewares: path.join(__dirname, 'src/middlewares'),
+      reducers: path.join(__dirname, 'src/reducers'),
+      images: path.join(__dirname, 'src/images'),
+      json: path.join(__dirname, 'src/json'),
+      styles: path.join(__dirname, 'src/styles'),
     },
   },
   module: {
-    loaders: [{
+    rules: [{
       test: /\.css$/,
-      loader: 'style!css!postcss?pack=cssnext',
+      use: [
+        'style-loader',
+        'css-loader',
+        { loader: 'postcss-loader' },
+      ],
     },
     {
       test: /\.jsx?$/,
-      loaders: ['react-hot', 'babel'],
+      use: ['babel-loader'],
       include: path.join(__dirname, 'src'),
       exclude: /node_modules/,
     },
     {
       test: /.*\.(gif|png|jpe?g|svg)$/i,
-      loaders: [
-        'file?hash=sha512&digest=hex&name=[hash].[ext]',
-        'image-webpack?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}',
+      use: [
+        'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
+        'image-webpack-loader?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}',
       ],
     },
     ],
   },
-  postcss: function () {
-    return {
-      defaults: [autoprefixer],
-      cleaner: [autoprefixer({ browsers: ['ie >= 10'] })],
-      cssnext: cssnext,
-    };
-  },
-};
+}
