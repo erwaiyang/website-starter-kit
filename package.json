@@ -4,7 +4,7 @@
   "description": "Newest and most popular tools!",
   "main": "index.js",
   "scripts": {
-    "start": "webpack -w --config webpack.config.dev.js",
+    "start": "webpack-dev-server -w --config webpack.config.dev.js",
     "build": "NODE_ENV=production webpack --config webpack.config.prod.js",
     "test": "NODE_PATH=./src mocha ./test/**/*.js --compilers js:babel-register --recursive",
     "test:watch": "npm test -- --watch",
@@ -63,6 +63,7 @@
     "postcss": "^6.0.22",
     "postcss-cssnext": "^3.1.0",
     "postcss-loader": "^2.1.5",
+    "prop-types": "^15.6.1",
     "react-addons-test-utils": "16.0.0-alpha.3",
     "react-hot-loader": "^4.1.2",
     "sinon": "^5.0.7",

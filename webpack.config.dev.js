@@ -1,12 +1,11 @@
 const path = require('path')
 
-const pkg = require('./package.json')
+// const pkg = require('./package.json')
 
 module.exports = {
   mode: 'development',
   devtool: 'cheap-module-eval-source-map',
   entry: {
-    vendor: Object.keys(pkg.dependencies),
     app: './src/index.js',
   },
   output: {
@@ -14,17 +13,22 @@ module.exports = {
     filename: '[name].js',
     publicPath: '/dist/',
   },
-  optimization: {
-    splitChunks: {
-      cacheGroups: {
-        commons: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          chunks: 'all',
-        },
-      },
-    },
+  devServer: {
+    contentBase: path.join(__dirname),
+    compress: true,
+    port: 8080,
   },
+  // optimization: {
+  //   splitChunks: {
+  //     cacheGroups: {
+  //       commons: {
+  //         test: /[\\/]node_modules[\\/]/,
+  //         name: 'vendors',
+  //         chunks: 'all',
+  //       },
+  //     },
+  //   },
+  // },
   resolve: {
     extensions: ['.js', '.jsx', '.css'],
     alias: {

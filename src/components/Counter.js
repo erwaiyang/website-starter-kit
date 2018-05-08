@@ -1,7 +1,10 @@
-import React, { PropTypes } from 'react';
+import React from 'react'
+import PropTypes from 'prop-types'
 
 const Counter = (props) => {
-  const { count, increment, decrement, asyncIncrement } = props;
+  const {
+    count, increment, decrement, asyncIncrement,
+  } = props
   return (
     <div>
       <h2>This is a Counter!</h2>
@@ -10,14 +13,14 @@ const Counter = (props) => {
       <button onClick={decrement}>MINUS</button>
       <button onClick={asyncIncrement}>ASYNC PLUS</button>
     </div>
-  );
-};
+  )
+}
 
 Counter.propTypes = {
   count: PropTypes.number.isRequired,
   increment: PropTypes.func.isRequired,
   decrement: PropTypes.func.isRequired,
   asyncIncrement: PropTypes.func.isRequired,
-};
+}
 
-export default Counter;
+export default Counter
